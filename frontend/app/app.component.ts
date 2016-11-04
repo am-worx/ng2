@@ -5,4 +5,4 @@ import {Component} from '@angular/core';
 	template: '<h1>Angular App</h1>'
 })
 
-export class AppComponent {}g
+export class AppComponent {}

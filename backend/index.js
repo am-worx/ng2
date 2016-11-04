@@ -1,17 +1,18 @@
 const express = require('express'),
+    path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser');
 
 let app = express();
 let port = process.env.PORT || 3000;
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, '../frontend')));
 app.use(morgan('short'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
 
 app.get('*', (req, res) => {
-    res.sendfile('./public/index.html');
+    res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
 });
 
 app.listen(port, () => {
