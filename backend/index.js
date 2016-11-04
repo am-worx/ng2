@@ -7,7 +7,7 @@ let app = express();
 let port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, '../frontend')));
-app.use(morgan('short'));
+app.use(morgan('common'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
 
@@ -16,5 +16,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log('Example app listening on port 3000!')
+    console.log(`Example app listening on port ${port}!`)
 });
