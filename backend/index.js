@@ -3,26 +3,14 @@ const express = require('express'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    routes = require('./routes'),
-    models = require('./models');
+    routes = require('./routes');
 
 let app = express();
 let port = process.env.PORT || 3000;
 
-var Schema = mongoose.Schema,
-    ObjectId = Schema.ObjectId;
-
-var Visitors = new Schema({
-    _id: ObjectId,
-    firstName: String,
-    lastName: String,
-    registrationDate: Date,
-    lastVisit: Date,
-    balance: Number
-});
-
 mongoose.connect('mongodb://localhost/visitors_database', (err) => {
-    if (err) throw err;
+
+    if (err) {console.log(err); throw err;}
 
     let app = express();
 
@@ -33,12 +21,15 @@ mongoose.connect('mongodb://localhost/visitors_database', (err) => {
 
     routes(app);
 
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
+    });
+
+
+
+    app.listen(port, () => {
+        console.log(`Example app listening on port ${port}!`)
+    });
+
 });
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
-});
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}!`)
-});

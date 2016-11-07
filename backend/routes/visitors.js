@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-//let Visitor = mongoose.model('Visitor');
+require('../models');
+let Visitor = mongoose.model('Visitor');
+
+let Schema = mongoose.Schema;
 
 module.exports = function(app) {
     app.use(bodyParser.json());
@@ -16,8 +19,10 @@ module.exports = function(app) {
     });
 
     app.post('/api/visitors', function(req, res, next) {
-        Visitor.create(req.body, function(err){
-            if (err) return next(err);
+        console.log('POSTing');
+        Visitor.create(req.body, function(err, data){
+            if (err) {console.log(err); return next(err)}
+            res.send(data);
         })
     });
 
