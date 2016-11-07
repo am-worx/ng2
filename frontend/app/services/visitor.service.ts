@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
-
-import { Visitor } from '../models/visitor';
 import { Observable } from 'rxjs/Observable';
+
+import { Http, Response, Headers } from '@angular/http';
+import { Visitor } from '../models/visitor';
+import 'rxjs/Rx';
 
 @Injectable()
 export class VisitorService {

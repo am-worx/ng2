@@ -9,8 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
 var Observable_1 = require('rxjs/Observable');
+var http_1 = require('@angular/http');
+require('rxjs/Rx');
 var VisitorService = (function () {
     function VisitorService(http) {
         this.http = http;
