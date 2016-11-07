@@ -14,7 +14,6 @@ module.exports = function(app) {
         Visitor.find().exec(function(err, data){
             if (err) return next(err);
             res.send(data);
-            console.log(data);
         });
     });
 
@@ -27,11 +26,13 @@ module.exports = function(app) {
     });
 
     app.delete('/api/visitors', function(req, res, next) {
-        Visitor.findOne({_id: req.param('id')}, function(err, visitor){
+        console.log('Remove', req.body.id);
+        Visitor.findOne({_id: req.body.id}, function(err, visitor){
             if (err) return next(err);
 
-            visitor.remove(function(err) {
+            visitor.remove(function(err, data) {
                 if (err) return next(err);
+                res.send(data);
             })
         })
     })
