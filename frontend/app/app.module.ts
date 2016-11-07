@@ -1,11 +1,13 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
-import {AppComponent} from './app.component';
+import {MyApp} from './components/my-app/app.my-app';
+import {UserInput} from './components/user-input/app.user-input'
+import {UsersTable} from './components/users-table/app.users-table';
 
 @NgModule({
 	imports: [BrowserModule],
-	declarations: [AppComponent],
-	bootstrap: [AppComponent]
+	declarations: [MyApp, UserInput, UsersTable],
+	bootstrap: [MyApp]
 })
-export class AppModule { }
+export class AppModule {}

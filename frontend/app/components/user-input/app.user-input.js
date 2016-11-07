@@ -9,22 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var app_my_app_1 = require('./components/my-app/app.my-app');
-var app_user_input_1 = require('./components/user-input/app.user-input');
-var app_users_table_1 = require('./components/users-table/app.users-table');
-var AppModule = (function () {
-    function AppModule() {
+var UserInput = (function () {
+    function UserInput() {
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
-            declarations: [app_my_app_1.MyApp, app_user_input_1.UserInput, app_users_table_1.UsersTable],
-            bootstrap: [app_my_app_1.MyApp]
+    UserInput = __decorate([
+        core_1.Component({
+            selector: 'user-input',
+            templateUrl: './app/components/user-input/app.user-input.html',
+            styleUrls: ['../styles/main.css']
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], UserInput);
+    return UserInput;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.UserInput = UserInput;
+//# sourceMappingURL=app.user-input.js.map

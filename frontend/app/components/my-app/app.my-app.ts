@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 
 @Component({
 	selector: 'my-app',
-	template: '<h1>Angular App</h1>',
+	templateUrl: './app/components/my-app/app.my-app.html',
 	styleUrls: ['../styles/main.css']
 })
 
-export class AppComponent {}
+export class MyApp {}

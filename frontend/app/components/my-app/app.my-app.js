@@ -9,22 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var app_my_app_1 = require('./components/my-app/app.my-app');
-var app_user_input_1 = require('./components/user-input/app.user-input');
-var app_users_table_1 = require('./components/users-table/app.users-table');
-var AppModule = (function () {
-    function AppModule() {
+var MyApp = (function () {
+    function MyApp() {
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
-            declarations: [app_my_app_1.MyApp, app_user_input_1.UserInput, app_users_table_1.UsersTable],
-            bootstrap: [app_my_app_1.MyApp]
+    MyApp = __decorate([
+        core_1.Component({
+            selector: 'my-app',
+            templateUrl: './app/components/my-app/app.my-app.html',
+            styleUrls: ['../styles/main.css']
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], MyApp);
+    return MyApp;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.MyApp = MyApp;
+//# sourceMappingURL=app.my-app.js.map

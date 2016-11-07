@@ -9,18 +9,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var UsersTable = (function () {
+    function UsersTable() {
     }
-    AppComponent = __decorate([
+    UsersTable = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: '<h1>Angular App</h1>',
+            selector: 'users-table',
+            templateUrl: './app/components/users-table/app.users-table.html',
             styleUrls: ['../styles/main.css']
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], UsersTable);
+    return UsersTable;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.UsersTable = UsersTable;
+//# sourceMappingURL=app.users-table.js.map
