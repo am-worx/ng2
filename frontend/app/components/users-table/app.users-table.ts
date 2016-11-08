@@ -17,9 +17,14 @@ export class UsersTable implements OnInit {
 
 	getVisitors() {
 		this._visitorService.getVisitors()
-			.subscribe(
+			.then(
 				visitors => this.visitors = visitors
 			)
+	}
+
+	deleteVisitor(visitorId: string) {
+		console.log('VV', visitorId);
+		this._visitorService.deleteVisitor(visitorId)
 	}
 
 	ngOnInit() {

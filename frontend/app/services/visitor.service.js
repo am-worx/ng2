@@ -9,9 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var Observable_1 = require('rxjs/Observable');
 var http_1 = require('@angular/http');
-require('rxjs/Rx');
+require('rxjs/add/operator/toPromise');
 var VisitorService = (function () {
     function VisitorService(http) {
         this.http = http;
@@ -19,9 +18,18 @@ var VisitorService = (function () {
     }
     VisitorService.prototype.getVisitors = function () {
         return this.http.get(this.visitorsUrl)
-            .map(this.extractData)
+            .toPromise()
+            .then(function (response) {
+            console.log('Visitors response 2', response.json());
+            return response.json();
+        })
             .catch(this.handleError);
     };
+    /*getVisitors (): Observable<Visitor[]> {
+        return this.http.get(this.visitorsUrl)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }*/
     VisitorService.prototype.postVisitor = function (visitor) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
@@ -47,7 +55,7 @@ var VisitorService = (function () {
         // In a real world app, we might send the error to remote logging infrastructure
         var errMsg = error.message || 'Server error';
         console.error(errMsg); // log to console instead
-        return Observable_1.Observable.throw(errMsg);
+        return Observable.throw(errMsg);
     };
     VisitorService = __decorate([
         core_1.Injectable(), 

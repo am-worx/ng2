@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
+
 import { Visitor } from '../models/visitor';
-import 'rxjs/Rx';
 
 @Injectable()
 export class VisitorService {
@@ -11,11 +11,21 @@ export class VisitorService {
 
 	private visitorsUrl = 'http://localhost:3000/api/visitors';
 
-	getVisitors (): Observable<Visitor[]> {
+	getVisitors(): Promise<Visitor[]> {
+		return this.http.get(this.visitorsUrl)
+			.toPromise()
+			.then(response => {
+				console.log('Visitors response 2', response.json());
+				return response.json() as Visitor[]
+			})
+			.catch(this.handleError);
+	}
+
+	/*getVisitors (): Observable<Visitor[]> {
 		return this.http.get(this.visitorsUrl)
 			.map(this.extractData)
 			.catch(this.handleError);
-	}
+	}*/
 
 	postVisitor(visitor: string) {
 		var headers = new Headers();

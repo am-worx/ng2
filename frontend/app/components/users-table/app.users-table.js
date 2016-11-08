@@ -17,7 +17,11 @@ var UsersTable = (function () {
     UsersTable.prototype.getVisitors = function () {
         var _this = this;
         this._visitorService.getVisitors()
-            .subscribe(function (visitors) { return _this.visitors = visitors; });
+            .then(function (visitors) { return _this.visitors = visitors; });
+    };
+    UsersTable.prototype.deleteVisitor = function (visitorId) {
+        console.log('VV', visitorId);
+        this._visitorService.deleteVisitor(visitorId);
     };
     UsersTable.prototype.ngOnInit = function () {
         this.getVisitors();
