@@ -15,6 +15,7 @@ var VisitorService = (function () {
     function VisitorService(http) {
         this.http = http;
         this.visitorsUrl = 'http://localhost:3000/api/visitors';
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     VisitorService.prototype.getVisitors = function () {
         return this.http.get(this.visitorsUrl)
@@ -25,31 +26,18 @@ var VisitorService = (function () {
         })
             .catch(this.handleError);
     };
-    /*getVisitors (): Observable<Visitor[]> {
-        return this.http.get(this.visitorsUrl)
-            .map(this.extractData)
+    VisitorService.prototype.postVisitor = function (data) {
+        return this.http
+            .post(this.visitorsUrl, JSON.stringify(data), { headers: this.headers })
+            .toPromise()
+            .then(function (res) { return res.json().data; })
             .catch(this.handleError);
-    }*/
-    VisitorService.prototype.postVisitor = function (visitor) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:8080/api/visitors', visitor, { headers: headers })
-            .map(function (res) { return res.json(); }).subscribe(function (data) { console.log(data); }, function (err) { console.log(err); });
     };
     VisitorService.prototype.deleteVisitor = function (visitorId) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         return this.http.delete('http://localhost:8080/api/visitors', visitorId, { headers: headers })
             .map(function (res) { return res.json(); }).subscribe(function (data) { console.log(data); }, function (err) { console.log(err); });
-    };
-    VisitorService.prototype.extractData = function (res) {
-        console.log('Candy Response', res);
-        if (res.status < 200 || res.status >= 300) {
-            throw new Error('Bad response status: ' + res.status);
-        }
-        var body = res.json();
-        //return body.data || { };
-        return body || {};
     };
     VisitorService.prototype.handleError = function (error) {
         // In a real world app, we might send the error to remote logging infrastructure

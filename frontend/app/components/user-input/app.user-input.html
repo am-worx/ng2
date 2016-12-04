@@ -1,4 +1,8 @@
 <div class="user-input">
-	<input type="text">
-	<button type="submit">Send</button>
+	<form (submit)="postVisitor()">
+		<input type="text" name="firstName" placeholder="first name" #firstName>
+		<input type="text" name="lastName" placeholder="last name" #lastName>
+		<input type="number" name="balance" placeholder="balance" #balance>
+		<button type="button" (click)="postVisitor(firstName.value, lastName.value, balance.value)">Send</button>
+	</form>
 </div>
