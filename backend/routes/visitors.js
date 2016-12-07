@@ -25,9 +25,10 @@ module.exports = function(app) {
         })
     });
 
-    app.delete('/api/visitors', function(req, res, next) {
-        console.log('Remove', req.body.id);
-        Visitor.findOne({_id: req.body.id}, function(err, visitor){
+    app.delete('/api/visitors/:id', function(req, res, next) {
+        console.log('Remove', req.params.id);
+        id = req.params.id;
+        Visitor.findOne({_id: id}, function(err, visitor){
             if (err) return next(err);
 
             visitor.remove(function(err, data) {
