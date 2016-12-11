@@ -41,7 +41,7 @@ var VisitorService = (function () {
             .catch(this.handleError);
     };
     VisitorService.prototype.handleError = function (error) {
-        // In a real world app, we might send the error to remote logging infrastructure.
+        // In a real world app, we might send the error to remote logging infrastructure
         var errMsg = error.message || 'Server error';
         console.error(errMsg); // log to console instead
         return Observable.throw(errMsg);
