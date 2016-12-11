@@ -22,13 +22,25 @@ export class UsersTable implements OnInit {
 			)
 	}
 
+	postVisitor(firstName, lastName, balance) {
+		this._visitorService.postVisitor({firstName, lastName, balance})
+			.then(visitor => {
+				this.visitors.push(visitor);
+			})
+			.catch(err => console.error(err));
+	}
+
 	deleteVisitor(visitorId: string) {
-		console.log('VV', visitorId);
 		this._visitorService.deleteVisitor(visitorId)
+			.then(visitor => {
+				this.visitors = this.visitors.filter(item => {
+					return item._id !== visitor._id
+				});
+			})
 	}
 
 	ngOnInit() {
-		this.getVisitors();
+		this.visitors = this.getVisitors();
 	}
 
 }

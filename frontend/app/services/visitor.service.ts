@@ -26,19 +26,16 @@ export class VisitorService {
 		return this.http
 			.post(this.visitorsUrl, JSON.stringify(data), {headers: this.headers})
 			.toPromise()
-			.then(res => res.json().data)
+			.then(res => res.json())
 			.catch(this.handleError);
 	}
 
-	deleteVisitor(visitorId: string) {
-		var headers = new Headers();
-		headers.append('Content-Type', 'application/json');
-
-		return this.http.delete('http://localhost:8080/api/visitors', visitorId, {headers: headers})
-			.map(res => res.json()).subscribe(
-				data => { console.log(data); },
-				err => { console.log(err); }
-			);
+	deleteVisitor(visitorId: string): Promise<void> {
+		const url = `${this.visitorsUrl}/${visitorId}`;
+		return this.http.delete(url, {headers: this.headers})
+			.toPromise()
+			.then(res => res.json())
+			.catch(this.handleError);
 	}
 
 	private handleError (error: any) {

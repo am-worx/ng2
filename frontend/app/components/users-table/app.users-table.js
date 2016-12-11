@@ -19,12 +19,25 @@ var UsersTable = (function () {
         this._visitorService.getVisitors()
             .then(function (visitors) { return _this.visitors = visitors; });
     };
+    UsersTable.prototype.postVisitor = function (firstName, lastName, balance) {
+        var _this = this;
+        this._visitorService.postVisitor({ firstName: firstName, lastName: lastName, balance: balance })
+            .then(function (visitor) {
+            _this.visitors.push(visitor);
+        })
+            .catch(function (err) { return console.error(err); });
+    };
     UsersTable.prototype.deleteVisitor = function (visitorId) {
-        console.log('VV', visitorId);
-        this._visitorService.deleteVisitor(visitorId);
+        var _this = this;
+        this._visitorService.deleteVisitor(visitorId)
+            .then(function (visitor) {
+            _this.visitors = _this.visitors.filter(function (item) {
+                return item._id !== visitor._id;
+            });
+        });
     };
     UsersTable.prototype.ngOnInit = function () {
-        this.getVisitors();
+        this.visitors = this.getVisitors();
     };
     UsersTable = __decorate([
         core_1.Component({

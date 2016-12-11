@@ -30,14 +30,15 @@ var VisitorService = (function () {
         return this.http
             .post(this.visitorsUrl, JSON.stringify(data), { headers: this.headers })
             .toPromise()
-            .then(function (res) { return res.json().data; })
+            .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     VisitorService.prototype.deleteVisitor = function (visitorId) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.delete('http://localhost:8080/api/visitors', visitorId, { headers: headers })
-            .map(function (res) { return res.json(); }).subscribe(function (data) { console.log(data); }, function (err) { console.log(err); });
+        var url = this.visitorsUrl + "/" + visitorId;
+        return this.http.delete(url, { headers: this.headers })
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
     };
     VisitorService.prototype.handleError = function (error) {
         // In a real world app, we might send the error to remote logging infrastructure

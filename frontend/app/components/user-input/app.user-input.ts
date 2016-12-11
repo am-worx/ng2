@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Visitor} from '../../models/visitor';
 import {VisitorService} from '../../services/visitor.service';
+import {UsersTable} from '../../components/users-table/app.users-table'
 
 @Component({
 	selector: 'user-input',
