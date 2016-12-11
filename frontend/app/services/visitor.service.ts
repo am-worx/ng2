@@ -39,7 +39,7 @@ export class VisitorService {
 	}
 
 	private handleError (error: any) {
-		// In a real world app, we might send the error to remote logging infrastructure
+		// In a real world app, we might send the error to remote logging infrastructure.
 		let errMsg = error.message || 'Server error';
 		console.error(errMsg); // log to console instead
 		return Observable.throw(errMsg);
